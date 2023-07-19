@@ -13,7 +13,7 @@ const MenuItem = ({ item }: any) => {
                     aspectRatio: 5 / 6,
                     height: 170,
                     borderRadius: 8,
-                    borderColor: '#d35647',
+                    borderColor: '#d35648',
                 }} source={{
                     uri: item.image,
                 }}>
