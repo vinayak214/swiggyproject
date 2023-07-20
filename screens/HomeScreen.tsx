@@ -12,7 +12,7 @@ const HomeScreen = () => {
         <ScrollView>
             <View>
                 {/* SearchBar */}
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', borderWidth: 1, margin: 10, padding: 10, borderColor: "#C0C0C0", borderRadius: 7 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', borderWidth: 1, margin: 10, padding: 0, borderColor: "#C0C0C0", borderRadius: 7 }}>
                     <TextInput style={{ fontSize: 17 }} placeholder='Search for Restaurant item or more' />
                     <Icon name="search" size={24} color='#E52B50' />
                 </View>

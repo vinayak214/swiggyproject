@@ -2,13 +2,17 @@ import { Image, ImageBackground, Pressable, StyleSheet, Text, View } from 'react
 import React from 'react'
 import { useState, useEffect } from "react";
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import { useNavigation } from '@react-navigation/native';
 
-const MenuItem = ({ item }: any) => {
+
+const MenuItem = ({ item }:any) => {
+
+    const navigation: any = useNavigation();
 
     console.log("item val!!!" + JSON.stringify(item.image))
     return (
         <View style={{ margin: 10 }}>
-            <Pressable style={{ flexDirection: 'row' }}>
+            <Pressable onPress={() => navigation.navigate("Menu",{item:item.id})} style={{ flexDirection: 'row' }}>
                 <ImageBackground style={{
                     aspectRatio: 5 / 6,
                     height: 170,

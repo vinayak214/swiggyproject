@@ -10,12 +10,15 @@ import {
   View,
 } from 'react-native';
 import HomeScreen from './screens/HomeScreen';
+import StackNavigator from './StackNavigator';
 
 const App = () => {
   return (
-    <View style={Styles.container}>
-      <HomeScreen></HomeScreen>
-    </View>
+
+    <StackNavigator></StackNavigator>
+    // <View style={Styles.container}>
+    //   <HomeScreen></HomeScreen>
+    // </View>
   )
 }
 
