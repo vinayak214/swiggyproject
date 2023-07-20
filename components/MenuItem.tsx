@@ -2,17 +2,25 @@ import { Image, ImageBackground, Pressable, StyleSheet, Text, View } from 'react
 import React from 'react'
 import { useState, useEffect } from "react";
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icons from 'react-native-vector-icons/AntDesign'
 import { useNavigation } from '@react-navigation/native';
-
 
 const MenuItem = ({ item }:any) => {
 
     const navigation: any = useNavigation();
-
-    console.log("item val!!!" + JSON.stringify(item.image))
     return (
         <View style={{ margin: 10 }}>
-            <Pressable onPress={() => navigation.navigate("Menu",{item:item.id})} style={{ flexDirection: 'row' }}>
+            <Pressable onPress={() => navigation.navigate("Menu",{
+                id: item.id,
+                name:item.name,
+                image:item.image,
+                rating:item.rating,
+                time:item.time,
+                adress:item.adress,
+                cost_for_two:item.cost_for_two,
+                cuisines:item.cuisines,
+                menu:item.menu,
+            })} style={{ flexDirection: 'row' }}>
                 <ImageBackground style={{
                     aspectRatio: 5 / 6,
                     height: 170,
@@ -77,7 +85,7 @@ const MenuItem = ({ item }:any) => {
                             marginTop: 10,
                         }}
                     >
-                        {/* <Icon name="star" size={23} color="yellow" /> */}
+                        <Icon name="bycycle" size={23} color="yellow" />
                         <Text style={{ marginLeft:2, fontSize: 16 }}>FREE DELIVERY</Text>
                     </View>
                 </View>
