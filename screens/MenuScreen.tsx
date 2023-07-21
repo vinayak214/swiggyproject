@@ -1,17 +1,16 @@
-import { StyleSheet, Text, View, SafeAreaView ,ScrollView} from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, ScrollView, FlatList } from 'react-native'
 import React from 'react'
 import { useRoute } from '@react-navigation/native'
 import Icon from 'react-native-vector-icons/AntDesign'
 import Icons from 'react-native-vector-icons/MaterialIcons'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import { useNavigation } from '@react-navigation/native';
+import FoodItem from '../components/FoodItem'
 
 const MenuScreen = () => {
     const route: any = useRoute();
     const navigation: any = useNavigation();
-
-    console.log(route.params)
-    return (
+        return (
         <ScrollView>
             <View style={{ height: 300, backgroundColor: "#B0C4DE", borderBottomLeftRadius: 40, borderBottomRightRadius: 40 }}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', margin: 10 }}>
@@ -57,7 +56,7 @@ const MenuScreen = () => {
                     </View>
                 </View>
             </View>
-            <Text style={{ textAlign:'center',color: 'black', fontSize: 15, marginTop: 5 }}>MENU</Text>
+            <Text style={{ textAlign: 'center', color: 'black', fontSize: 15, marginTop: 5 }}>MENU</Text>
             <View
                 style={{
                     borderBottomColor: 'black',
@@ -65,6 +64,18 @@ const MenuScreen = () => {
                     marginTop: 12
                 }}
             />
+
+            {/* {route.params.menu.map((item:any, index:any) => (
+                <FoodItem item={item} key={index} />
+            ))} */}
+            <FlatList
+                data={route.params.menu}
+                scrollEnabled={false}
+                keyExtractor={item => item.id}
+                renderItem={({ item, index }) => (
+                    <FoodItem item={item} key={index} />
+                )}>
+            </FlatList>
         </ScrollView>
     )
 }

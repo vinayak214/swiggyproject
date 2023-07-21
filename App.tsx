@@ -16,9 +16,7 @@ const App = () => {
   return (
 
     <StackNavigator></StackNavigator>
-    // <View style={Styles.container}>
-    //   <HomeScreen></HomeScreen>
-    // </View>
+ 
   )
 }
 
