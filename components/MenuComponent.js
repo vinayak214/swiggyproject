@@ -1,7 +1,11 @@
-import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native'
 import React, { useState } from 'react'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
-const MenuComponent = ({ food }: any) => {
+
+
+const MenuComponent = ({ food }) => {
+    console.log("MenuComponent")
 
     const [defaultRating, setDefaultRating] = useState(2)
     const [maxRating, setMaxRating] = useState([1, 2, 3, 4, 5])
@@ -24,7 +28,6 @@ const MenuComponent = ({ food }: any) => {
                                     ? { uri: starImgFilled }
                                     : { uri: StarImgCorner }
                             }>
-
                         </Image>
                     </TouchableOpacity>
                 )
@@ -34,22 +37,50 @@ const MenuComponent = ({ food }: any) => {
     console.log("MenuComponent" + JSON.stringify(food))
 
     return (
-        <Pressable style={{
-            margin: 10,
-            flexDirection: "row",
-            justifyContent: "space-between",
-        }}>
-            <View>
-                <Text style={{ fontSize: 18, fontWeight: "600" }}>{food.name}</Text>
-                <Text>{food.price}</Text>
-                <View style={{ flexDirection: 'row' }}>
-                    <CustomRatingBar></CustomRatingBar>
+        <View>
+            <Pressable style={{
+                margin: 10,
+                flexDirection: "row",
+                justifyContent: "space-between",
+            }}>
+                <View>
+                    <Text style={{ fontSize: 18, fontWeight: "600",color:'black' }}>{food.name}</Text>
+                    <Text>{food.price}</Text>
+                    <View style={{ flexDirection: 'row' }}>
+                        <CustomRatingBar ></CustomRatingBar>
+                    </View>
+                    <Text style={{ width: 180, marginTop: 8, color: "gray", fontSize: 16 }}>
+                        {food.description.length > 30
+                            ? food.description.substr(0, 35) + "..."
+                            : food.description}
+                    </Text>
                 </View>
-                <Text
-                    style={{ width: 180, marginTop: 8, color: "gray", fontSize: 16 }}
-                >{food.description.length > 30 ? food.description.substr(0, 30) + "..." : food.description}</Text>
-            </View>
-        </Pressable>
+
+                <Pressable style={{marginRight:10}}>
+                    <ImageBackground style={{
+                        width: 120, height: 120, borderRadius: 8
+                    }} source={{
+                        uri: food.image,
+                    }}>
+                    </ImageBackground>
+                    <Pressable
+                     style={{
+                        position:'absolute',
+                        flexDirection:'row',
+                        backgroundColor:'white',
+                        paddingHorizontal:25,
+                        paddingVertical:10,
+                        alignSelf:'center',
+                        top:90,
+                        left:20,
+                        alignItems:'center'
+                     }}>
+                        <Text style={{color:"green",fontSize:18,fontWeight:'bold'}}>ADD</Text>
+                    </Pressable>
+                </Pressable>
+            </Pressable>
+
+        </View>
     )
 }
 
