@@ -1,5 +1,4 @@
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, FlatList, Pressable } from 'react-native'
-import React from 'react'
 import { useRoute } from '@react-navigation/native'
 import Icon from 'react-native-vector-icons/AntDesign'
 import Icons from 'react-native-vector-icons/MaterialIcons'
@@ -7,10 +6,24 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { useNavigation } from '@react-navigation/native';
 import FoodItem from '../components/FoodItem'
+import React, { useEffect, useState } from "react";
+import Modal from "react-native-modal";
+
 
 const MenuScreen = () => {
     const route: any = useRoute();
     const navigation: any = useNavigation();
+    const [menu, setMenu] = useState("");
+    const [modalVisible, setModalVisible]: any = useState(false)
+    useEffect(() => {
+        const fetchMenu = () => {
+
+            setMenu(route.params.menu)
+        }
+    }, [])
+    const toggleModal = () => {
+        setModalVisible(!modalVisible);
+    };
     return (
         <View>
             <ScrollView>
@@ -80,6 +93,7 @@ const MenuScreen = () => {
                 </FlatList>
             </ScrollView>
             <Pressable
+                onPress={toggleModal}
                 style={{
                     width: 60,
                     height: 60,
@@ -99,8 +113,40 @@ const MenuScreen = () => {
                     size={24}
                     color="white"
                 />
-
             </Pressable>
+            <Modal isVisible={modalVisible} onBackdropPress={toggleModal}>
+                <View
+                    style={{
+                        height: 190,
+                        width: 250,
+                        backgroundColor: "black",
+                        position: "absolute",
+                        bottom: 35,
+                        right: 10,
+                        borderRadius: 7,
+                    }}
+                >
+                    {route.params.menu.map((item: any, i: any) =>
+                        <View style={{
+                            padding: 10,
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                        }}
+                        >
+                            <Text style={{ color: "#D0D0D0", fontWeight: "600", fontSize: 19 }}
+                            >
+                                {item.name}
+                            </Text>
+                            <Text
+                                style={{ color: "#D0D0D0", fontWeight: "600", fontSize: 19 }}
+                            >
+                                {item.items.length}
+                            </Text>
+                        </View>)}
+                </View>
+
+            </Modal>
         </View>
     )
 }
