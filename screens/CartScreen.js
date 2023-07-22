@@ -117,6 +117,7 @@ const CartScreen = () => {
                   >
                     <Pressable
                       onPress={() => {
+                        console.log("item!!!" + item)
                         dispatch(decrementQuantity(item));
                       }}
                     >
