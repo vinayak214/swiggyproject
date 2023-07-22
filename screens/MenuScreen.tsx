@@ -8,16 +8,23 @@ import { useNavigation } from '@react-navigation/native';
 import FoodItem from '../components/FoodItem'
 import React, { useEffect, useState } from "react";
 import Modal from "react-native-modal";
+import { useSelector } from "react-redux";
+
 
 
 const MenuScreen = () => {
+    const cart = useSelector((state: any) => state.cart.cart);
+    console.log("cart" + JSON.stringify(cart))
+    const total = cart
+    .map((item:any) => item.price * item.quantity)
+    .reduce((curr:any, prev:any) => curr + prev, 0);
+
     const route: any = useRoute();
     const navigation: any = useNavigation();
     const [menu, setMenu] = useState("");
     const [modalVisible, setModalVisible]: any = useState(false)
     useEffect(() => {
         const fetchMenu = () => {
-
             setMenu(route.params.menu)
         }
     }, [])
@@ -147,6 +154,60 @@ const MenuScreen = () => {
                 </View>
 
             </Modal>
+            {total === 0 ? null : (
+                <Pressable
+                    style={{
+                        backgroundColor: "#00A877",
+                        width: "90%",
+                        padding: 13,
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                        marginBottom: 30,
+                        position: "absolute",
+                        borderRadius: 8,
+                        left: 20,
+                        bottom: 10,
+                    }}
+                >
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                        }}
+                    >
+                        <View>
+                            <Text
+                                style={{ fontSize: 16, fontWeight: "bold", color: "white" }}
+                            >
+                                {cart.length} items | {total}
+                            </Text>
+                            <Text
+                                style={{
+                                    fontSize: 14,
+                                    fontWeight: "500",
+                                    marginTop: 3,
+                                    color: "white",
+                                }}
+                            >
+                                Extra Charges may Apply!
+                            </Text>
+                        </View>
+
+                        <Pressable
+                            onPress={() =>
+                                navigation.navigate("Cart", {
+                                    name: route.params.name,
+                                })
+                            }
+                        >
+                            <Text style={{ fontSize: 18, fontWeight: "600", color: "white" }}>
+                                View Cart
+                            </Text>
+                        </Pressable>
+                    </View>
+                </Pressable>
+            )}
         </View>
     )
 }

@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import HomeScreen from './screens/HomeScreen';
 import MenuScreen from './screens/MenuScreen';
+import Loading from './screens/Loading';
+import CartScreen from './screens/CartScreen';
 
 const StackNavigator = ()=> {
     const Stack = createNativeStackNavigator();
@@ -12,6 +14,8 @@ const StackNavigator = ()=> {
             <Stack.Navigator>
                 <Stack.Screen name="Home" component={HomeScreen}options={{headerShown:false}} />
                 <Stack.Screen name="Menu" component={MenuScreen}options={{headerShown:false}} />
+             <Stack.Screen name="Cart" component={CartScreen}options={{headerShown:false}} />
+             <Stack.Screen name="Loading" component={Loading}options={{headerShown:false}} />
             </Stack.Navigator>
         </NavigationContainer>
     )

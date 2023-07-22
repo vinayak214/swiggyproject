@@ -5,7 +5,6 @@ import MenuComponent from "./MenuComponent";
 
 const FoodItem = ({ item }: any) => {
     const data: any = [item];
-    console.log("FootItem!!!" + JSON.stringify(item))
     const [selected, setSelected] = useState([""]);
     const handleItemSelect = (item: any) => {
         // const itemSelected = selected.find((c) => c === item);
