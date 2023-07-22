@@ -4,7 +4,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import { decrementQuantity, incrementQuantity } from "../redux/cartReducer";
+import { cleanCart, decrementQuantity, incrementQuantity } from "../redux/cartReducer";
 const CartScreen = () => {
   const navigation = useNavigation();
   const route = useRoute();
